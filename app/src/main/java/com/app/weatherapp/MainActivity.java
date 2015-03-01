@@ -37,18 +37,22 @@ public class MainActivity extends ActionBarActivity {
     private CurrentWeather mCurrentWeather;
 
     @InjectView(R.id.timeLabel) TextView mTimeLabel;
-    @InjectView(R.id.temperatureLabel) TextView mTemperatureLabel;
-    @InjectView(R.id.humidityLabel) TextView mHumidityValue;
-    @InjectView(R.id.precipLabel) TextView mPrecipValue;
     @InjectView(R.id.summaryLabel) TextView mSummaryLabel;
+    @InjectView(R.id.temperatureLabel) TextView mTemperatureLabel;
+    @InjectView(R.id.humidityValue) TextView mHumidityValue;
+    @InjectView(R.id.precipValue) TextView mPrecipValue;
+    @InjectView(R.id.precipLabel) TextView mPrecipLabel;
+    @InjectView(R.id.humidityLabel) TextView mHumidityLabel;
     @InjectView(R.id.iconImageView) ImageView mIconImageView;
     @InjectView(R.id.refreshImagiew) ImageView mRefreshImageView;
     @InjectView(R.id.progressBar)ProgressBar mProgressBar;
+    @InjectView(R.id.locationLabel)TextView mLocationLabel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ButterKnife.inject(this);
         mProgressBar.setVisibility(View.INVISIBLE);
 
@@ -102,7 +106,7 @@ public class MainActivity extends ActionBarActivity {
                         }
                     });
                     try {
-                        String jsonData = response.body().toString();
+                        String jsonData = response.body().string();
                         Log.v(TAG, jsonData);
                         if (response.isSuccessful()) {
 
@@ -145,6 +149,9 @@ public class MainActivity extends ActionBarActivity {
         mHumidityValue.setText(mCurrentWeather.getHumidity() + "");
         mPrecipValue.setText(mCurrentWeather.getPrecipChance() + "%");
         mSummaryLabel.setText(mCurrentWeather.getSummary() + "");
+        mLocationLabel.setText(mCurrentWeather.getTimeZone() + "");
+        mIconImageView.setImageResource(mCurrentWeather.getIconId());
+
     }
 
     private CurrentWeather getCurrentDetails(String jsonData) throws JSONException{

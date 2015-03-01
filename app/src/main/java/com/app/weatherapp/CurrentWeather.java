@@ -16,22 +16,18 @@ public class CurrentWeather {
     private String mTimeZone;
 
     public String getTimeZone() {
-
         return mTimeZone;
     }
 
     public void setTimeZone(String timeZone) {
-
-        mTimeZone = timeZone;
+         mTimeZone = timeZone;
     }
 
     public String getSummary() {
-
         return mSummary;
     }
 
     public void setSummary(String summary) {
-
         mSummary = summary;
     }
 
@@ -45,8 +41,7 @@ public class CurrentWeather {
     }
 
     public double getHumidity() {
-
-        return mHumidity;
+         return mHumidity;
     }
 
     public void setHumidity(double humidity) {
@@ -55,7 +50,7 @@ public class CurrentWeather {
     }
 
     public int getTemperature() {
-        return (int)Math.round(mTemperature);
+        return ((int)Math.round(((mTemperature)-32)/9)*5);
     }
 
     public void setTemperature(double temperature) {
